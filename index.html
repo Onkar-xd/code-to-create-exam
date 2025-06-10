@@ -20,10 +20,12 @@
       color: var(--text-color);
       overflow-x: hidden;
     }
+    header, footer, section {
+      padding: 20px;
+    }
     header {
       background-color: var(--primary-color);
       color: white;
-      padding: 1rem 0;
       text-align: center;
     }
     .brand {
@@ -32,17 +34,8 @@
       align-items: center;
       gap: 10px;
     }
-    .brand img {
-      width: 50px;
-    }
-    nav ul.navbar {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0 0;
-    }
-    .search-container, .lang-selector {
-      margin: 1rem auto;
-    }
+    .brand img { width: 50px; }
+    nav ul.navbar { list-style: none; padding: 0; margin: 1rem 0 0; }
     .hero {
       background: url('images/hero-bg.svg') no-repeat center/cover;
       position: relative;
@@ -50,104 +43,31 @@
       color: white;
       padding: 100px 20px;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-    }
-    .hero > * {
-      position: relative;
-      z-index: 1;
-    }
     .carousel {
-      position: relative;
-      max-width: 800px;
-      height: 300px;
-      margin: 40px auto;
-      overflow: hidden;
-      border-radius: 8px;
+      max-width: 800px; height: 300px; margin: auto; overflow: hidden; border-radius: 8px;
     }
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      height: 100%;
-    }
-    .slide {
-      min-width: 100%;
-      position: relative;
-    }
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .slides { display: flex; transition: transform 0.5s ease-in-out; height: 100%; }
+    .slide { min-width: 100%; position: relative; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
     .overlay-text {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      color: white;
-      background: rgba(0,0,0,0.5);
-      padding: 10px 15px;
-      border-radius: 5px;
+      position: absolute; bottom: 20px; left: 20px;
+      background: rgba(0,0,0,0.5); color: white; padding: 10px;
     }
-    .carousel-controls {
-      position: absolute;
-      width: 100%;
-      top: 50%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
+    .features, .team, .awards, .partners, .faq, .stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
     }
-    .carousel-controls button {
-      background: rgba(0,0,0,0.5);
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
+    .feature-item, .team-member, .award, .partner-logo, .faq-item, .stat-box {
+      flex: 1 1 300px; background: white; padding: 20px;
+      border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    .content-section {
-      text-align: center;
-      padding: 40px 20px;
+    .team-member:hover, .feature-item:hover {
+      transform: scale(1.05); transition: transform 0.3s;
     }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+    .modal, .gallery, .map, .contact-form, .timeline {
+      margin-top: 30px;
     }
-    .feature-item {
-      flex: 1 1 300px;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .feature-item:hover {
-      transform: scale(1.05);
-    }
-    .feature-item button {
-      margin-top: 10px;
-      background: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .testimonial-section {
-      background: var(--primary-color);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    footer {
-      background-color: var(--text-color);
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-    }
+    .faq-item h4 { cursor: pointer; }
+    .faq-item p { display: none; }
   </style>
 </head>
 <body>
@@ -183,60 +103,112 @@
   <section class="hero">
     <h2>Your Journey Begins Here</h2>
     <p>Discover breathtaking places and unforgettable experiences.</p>
-    <button>Book Now</button>
-    <button>Learn More</button>
+    <button onclick="document.getElementById('booking').scrollIntoView()">Book Now</button>
+    <button onclick="document.getElementById('mission').scrollIntoView()">Learn More</button>
   </section>
 
   <div class="carousel">
     <div class="slides" id="slides">
-      <div class="slide">
-        <img src="images/mountain.svg" alt="Mountain">
-        <div class="overlay-text">Explore the Mountains</div>
-      </div>
-      <div class="slide">
-        <img src="images/beach.svg" alt="Beach">
-        <div class="overlay-text">Relax by the Beach</div>
-      </div>
-      <div class="slide">
-        <img src="images/forest.svg" alt="Forest">
-        <div class="overlay-text">Wander the Forests</div>
-      </div>
-    </div>
-    <div class="carousel-controls">
-      <button onclick="prevSlide()">&#10094;</button>
-      <button onclick="nextSlide()">&#10095;</button>
+      <div class="slide"><img src="images/mountain.svg" alt="Mountain"><div class="overlay-text">Explore the Mountains</div></div>
+      <div class="slide"><img src="images/beach.svg" alt="Beach"><div class="overlay-text">Relax by the Beach</div></div>
+      <div class="slide"><img src="images/forest.svg" alt="Forest"><div class="overlay-text">Wander the Forests</div></div>
     </div>
   </div>
 
   <section class="content-section">
     <h3>Why Explore With Us?</h3>
     <div class="features">
-      <div class="feature-item">
-        <img src="images/expert-guide.svg" alt="Expert Guide">
-        <h4>Expert Guides</h4>
-        <p>Learn from seasoned professionals with local expertise.</p>
-        <button>Read More</button>
-      </div>
-      <div class="feature-item">
-        <img src="images/unique-destination.svg" alt="Unique Destination">
-        <h4>Unique Destinations</h4>
-        <p>Discover places off the beaten path with unique experiences.</p>
-        <button>Read More</button>
-      </div>
-      <div class="feature-item">
-        <img src="images/sustainable-travel.svg" alt="Sustainable Travel">
-        <h4>Sustainable Travel</h4>
-        <p>Travel responsibly and make a positive impact on the environment.</p>
-        <button>Read More</button>
+      <div class="feature-item"><h4>Expert Guides</h4><p>Learn from seasoned professionals.</p><button onclick="alert('Expert guides provide deep local knowledge and safety.')">Read More</button></div>
+      <div class="feature-item"><h4>Unique Destinations</h4><p>Go off the beaten path.</p><button onclick="alert('Unique destinations are handpicked for authenticity.')">Read More</button></div>
+      <div class="feature-item"><h4>Sustainable Travel</h4><p>Protect the environment.</p><button onclick="alert('We practice eco-friendly tourism in all destinations.')">Read More</button></div>
+    </div>
+  </section>
+
+  <section id="map" class="map">
+    <h3>Interactive Map</h3>
+    <iframe src="https://www.google.com/maps/embed?..." width="100%" height="300" style="border:0;" allowfullscreen></iframe>
+  </section>
+
+  <section id="booking">
+    <h3>Book Your Adventure</h3>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Email" required />
+      <select required><option>Choose Destination</option><option>Mountains</option><option>Beach</option><option>Forest</option></select>
+      <button type="submit">Submit Booking</button>
+    </form>
+  </section>
+
+  <section id="timeline" class="timeline">
+    <h3>Company History</h3>
+    <ul>
+      <li>2010 - Founded in Colorado</li>
+      <li>2015 - Expanded to 15+ countries</li>
+      <li>2020 - Launched eco-travel programs</li>
+    </ul>
+  </section>
+
+  <section id="mission">
+    <h3>Mission & Values</h3>
+    <p>We believe in exploration, education, and environmental responsibility. Our goal is to inspire wanderers to explore sustainably.</p>
+  </section>
+
+  <section class="team">
+    <h3>Meet Our Team</h3>
+    <div class="team-member"><h4>Sarah Johnson</h4><p>Lead Guide</p></div>
+    <div class="team-member"><h4>Leo Tang</h4><p>Logistics Manager</p></div>
+    <div class="team-member"><h4>Maria Lopez</h4><p>Community Coordinator</p></div>
+  </section>
+
+  <section class="stats">
+    <div class="stat-box"><h4 class="stat-number" data-target="250">0</h4><p>Destinations</p></div>
+    <div class="stat-box"><h4 class="stat-number" data-target="1500">0</h4><p>Happy Travelers</p></div>
+    <div class="stat-box"><h4 class="stat-number" data-target="50">0</h4><p>Team Members</p></div>
+  </section>
+
+  <section class="awards">
+    <h3>Awards & Recognition</h3>
+    <div class="award"><p>Best Adventure Agency 2023</p></div>
+    <div class="award"><p>Eco-Tourism Leader Award</p></div>
+  </section>
+
+  <section class="testimonial-section">
+    <h3>Client Testimonials</h3>
+    <div class="carousel">
+      <div class="slides" id="testi">
+        <div class="slide"><p>“Amazing trip! Can’t wait to go again.” – Alice</p></div>
+        <div class="slide"><p>“Organized and insightful.” – Tom</p></div>
+        <div class="slide"><p>“Exceeded expectations.” – Linda</p></div>
       </div>
     </div>
   </section>
 
-  <section class="testimonial-section">
-    <h3>What Our Travelers Say</h3>
-    <p>“Best trip of my life! Everything was perfectly organized.” – Anna K.</p>
-    <p>“The guides were knowledgeable and friendly. Highly recommend!” – James R.</p>
-    <p>“I discovered places I never would’ve found on my own.” – Maria S.</p>
+  <section class="partners">
+    <h3>Our Partners</h3>
+    <div class="partner-logo"><img src="images/logo.svg" alt="Partner Logo" width="100"></div>
+    <div class="partner-logo"><img src="images/logo.svg" alt="Partner Logo" width="100"></div>
+  </section>
+
+  <section class="faq">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-item">
+      <h4 onclick="toggleFAQ(this)">What’s included in a tour?</h4>
+      <p>Accommodation, local transport, meals, guides.</p>
+    </div>
+    <div class="faq-item">
+      <h4 onclick="toggleFAQ(this)">How do I book?</h4>
+      <p>Use our Book Now form or contact support.</p>
+    </div>
+  </section>
+
+  <section class="contact-form">
+    <h3>Contact Us</h3>
+    <form onsubmit="return validateForm()">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea placeholder="Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
   <footer>
@@ -252,16 +224,53 @@
       currentSlide = (index + totalSlides) % totalSlides;
       slides.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+    setInterval(nextSlide, 5000);
 
-    function nextSlide() {
-      showSlide(currentSlide + 1);
+    // Testimonials slider
+    const testi = document.getElementById('testi');
+    let testiIndex = 0;
+    setInterval(() => {
+      testiIndex = (testiIndex + 1) % testi.children.length;
+      testi.style.transform = `translateX(-${testiIndex * 100}%)`;
+    }, 4000);
+
+    // FAQ toggle
+    function toggleFAQ(el) {
+      const p = el.nextElementSibling;
+      p.style.display = p.style.display === 'block' ? 'none' : 'block';
     }
 
-    function prevSlide() {
-      showSlide(currentSlide - 1);
-    }
+    // Stats animation
+    const stats = document.querySelectorAll('.stat-number');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = +el.getAttribute('data-target');
+          let count = 0;
+          const step = target / 100;
+          const interval = setInterval(() => {
+            count += step;
+            el.textContent = Math.ceil(count);
+            if (count >= target) clearInterval(interval);
+          }, 20);
+        }
+      });
+    }, { threshold: 0.5 });
+    stats.forEach(stat => observer.observe(stat));
 
-    setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
+    // Form validation
+    function validateForm() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      if (!name || !email) {
+        alert('Please fill in all required fields.');
+        return false;
+      }
+      return true;
+    }
   </script>
 </body>
 </html>
