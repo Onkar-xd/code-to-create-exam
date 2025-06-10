@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explorer - Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wanderlust - Home</title>
+  <link rel="stylesheet" href="controls.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="controls.css">
   <style>
     :root {
       --primary-color: #3498db;
@@ -18,249 +18,246 @@
       margin: 0;
       background-color: var(--secondary-color);
       color: var(--text-color);
+      overflow-x: hidden;
     }
-    header, footer {
+    header {
       background-color: var(--primary-color);
       color: white;
-      text-align: center;
       padding: 1rem 0;
+      text-align: center;
     }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+    .brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand img {
+      width: 50px;
+    }
+    nav ul.navbar {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+    }
+    .search-container, .lang-selector {
+      margin: 1rem auto;
     }
     .hero {
-      background: url('images/hero-bg.svg') no-repeat center center/cover;
-      color: white;
-      text-align: center;
-      padding: 100px 20px;
+      background: url('images/hero-bg.svg') no-repeat center/cover;
       position: relative;
+      text-align: center;
+      color: white;
+      padding: 100px 20px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+    .carousel {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+      overflow: hidden;
+    }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      vertical-align: top;
+    }
+    .overlay-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
+    .carousel-controls {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+    .carousel-controls button {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .content-section {
+      text-align: center;
+      padding: 40px 20px;
     }
     .features {
       display: flex;
-      justify-content: space-around;
       flex-wrap: wrap;
       gap: 20px;
+      justify-content: center;
     }
     .feature-item {
       flex: 1 1 300px;
-      background-color: white;
+      background: white;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
     }
     .feature-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      transform: scale(1.05);
     }
-    .feature-item .read-more {
-      display: block;
-      margin-top: 1rem;
-      color: var(--primary-color);
-      font-weight: bold;
+    .feature-item button {
+      margin-top: 10px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px 15px;
       cursor: pointer;
-      text-decoration: underline;
-    }
-    .feature-description {
-      display: none;
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      color: #555;
+      border-radius: 4px;
     }
     .testimonial-section {
-      margin: 60px auto;
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: var(--primary-color);
+      color: white;
+      padding: 40px 20px;
       text-align: center;
     }
-    .testimonial {
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-    .testimonial-author {
-      font-weight: bold;
-      color: var(--primary-color);
+    footer {
+      background-color: var(--text-color);
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
+    <div class="brand">
+      <img src="images/logo.svg" alt="Logo">
       <h1>Wanderlust</h1>
-      <nav>
-        <ul class="navbar">
-          <li><a href="#">Home</a></li>
-          <li class="dropdown">
-            <a href="#">Explore ▼</a>
-            <ul class="dropdown-content">
-              <li><a href="#">Destinations</a></li>
-              <li><a href="#">Adventures</a></li>
-              <li><a href="#">Tips</a></li>
-            </ul>
-          </li>
-          <li><a href="#">About</a></li>
-        </ul>
-      </nav>
+    </div>
+    <ul class="navbar">
+      <li class="dropdown">
+        <a href="#">Menu</a>
+        <div class="dropdown-content">
+          <a href="index.html">Home</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="about.html">About</a>
+        </div>
+      </li>
+    </ul>
+    <div class="search-container">
+      <input type="text" placeholder="Search destinations..." />
+      <button>Search</button>
+    </div>
+    <div class="lang-selector">
+      <label for="language">Language:</label>
+      <select id="language">
+        <option>English</option>
+        <option>Spanish</option>
+        <option>French</option>
+      </select>
     </div>
   </header>
 
-  <div class="controls">
-    <div class="search-container">
-      <input type="text" id="site-search" placeholder="Search...">
-      <button id="search-btn">🔍</button>
+  <section class="hero">
+    <h2>Your Journey Begins Here</h2>
+    <p>Discover breathtaking places and unforgettable experiences.</p>
+    <button>Book Now</button>
+    <button>Learn More</button>
+  </section>
+
+  <div class="carousel">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <img src="images/mountain.svg" alt="Mountain">
+        <div class="overlay-text">Explore the Mountains</div>
+      </div>
+      <div class="slide">
+        <img src="images/beach.svg" alt="Beach">
+        <div class="overlay-text">Relax by the Beach</div>
+      </div>
+      <div class="slide">
+        <img src="images/forest.svg" alt="Forest">
+        <div class="overlay-text">Wander the Forests</div>
+      </div>
     </div>
-    <div class="lang-selector">
-      <label for="lang-select">Language:</label>
-      <select id="lang-select">
-        <option value="en">English</option>
-        <option value="hi">हिन्दी</option>
-        <option value="es">Español</option>
-      </select>
+    <div class="carousel-controls">
+      <button onclick="prevSlide()">&#10094;</button>
+      <button onclick="nextSlide()">&#10095;</button>
     </div>
   </div>
 
-  <section class="hero">
-    <div class="container">
-      <h2>Your Journey Begins Here</h2>
-      <p>Discover breathtaking places and unforgettable experiences.</p>
-    </div>
-  </section>
-
-  <!-- START: Carousel -->
-  <section class="carousel">
-    <div class="slides-container">
-      <div class="slide active">
-        <img src="images/slider1.jpg" alt="Alpine Heights">
-        <div class="slide-overlay">
-          <h2>Alpine Heights</h2>
-          <p>Climb to serenity above the clouds.</p>
-          <div class="buttons">
-            <a href="#" class="cta">Book Now</a>
-            <a href="#" class="cta secondary">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="images/slider2.jpg" alt="Tropical Bliss">
-        <div class="slide-overlay">
-          <h2>Tropical Bliss</h2>
-          <p>Where sunshine meets adventure.</p>
-          <div class="buttons">
-            <a href="#" class="cta">Book Now</a>
-            <a href="#" class="cta secondary">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="images/slider3.jpg" alt="Forest Whispers">
-        <div class="slide-overlay">
-          <h2>Forest Whispers</h2>
-          <p>Reconnect in the heart of nature.</p>
-          <div class="buttons">
-            <a href="#" class="cta">Book Now</a>
-            <a href="#" class="cta secondary">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Feature Section -->
-  <section class="content-section container">
+  <section class="content-section">
     <h3>Why Explore With Us?</h3>
     <div class="features">
       <div class="feature-item">
+        <img src="images/expert-guide.svg" alt="Expert Guide">
         <h4>Expert Guides</h4>
-        <p>Our team knows the world inside out.</p>
-        <span class="read-more" onclick="toggleRead(this)">Read more</span>
-        <div class="feature-description">We provide seasoned travel professionals with years of experience, certifications, and a deep love for adventure.</div>
+        <p>Learn from seasoned professionals with local expertise.</p>
+        <button>Read More</button>
       </div>
       <div class="feature-item">
+        <img src="images/unique-destination.svg" alt="Unique Destination">
         <h4>Unique Destinations</h4>
-        <p>Go off the beaten path.</p>
-        <span class="read-more" onclick="toggleRead(this)">Read more</span>
-        <div class="feature-description">Explore handpicked, less-traveled places that give you genuine cultural and natural experiences.</div>
+        <p>Discover places off the beaten path with unique experiences.</p>
+        <button>Read More</button>
       </div>
       <div class="feature-item">
+        <img src="images/sustainable-travel.svg" alt="Sustainable Travel">
         <h4>Sustainable Travel</h4>
-        <p>Leave a lighter footprint.</p>
-        <span class="read-more" onclick="toggleRead(this)">Read more</span>
-        <div class="feature-description">We promote eco-friendly tourism by supporting local communities and minimizing environmental impact.</div>
+        <p>Travel responsibly and make a positive impact on the environment.</p>
+        <button>Read More</button>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section class="testimonial-section container">
+  <section class="testimonial-section">
     <h3>What Our Travelers Say</h3>
-    <div class="testimonial">
-      "The most incredible trip of my life. Everything was planned perfectly."
-      <div class="testimonial-author">— Priya S., Mumbai</div>
-    </div>
-    <div class="testimonial">
-      "Beautiful destinations, friendly guides, and unforgettable memories."
-      <div class="testimonial-author">— John D., London</div>
-    </div>
-    <div class="testimonial">
-      "We saw places no other tour takes you to. 100% recommended!"
-      <div class="testimonial-author">— Leila B., Dubai</div>
-    </div>
+    <p>“Best trip of my life! Everything was perfectly organized.” – Anna K.</p>
+    <p>“The guides were knowledgeable and friendly. Highly recommend!” – James R.</p>
+    <p>“I discovered places I never would’ve found on my own.” – Maria S.</p>
   </section>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2023 Explorer. All rights reserved.</p>
-    </div>
+    <p>&copy; 2025 Wanderlust. All rights reserved.</p>
   </footer>
 
   <script>
-    // Carousel
     let currentSlide = 0;
-    const slides = document.querySelectorAll(".slide");
+    const slides = document.getElementById('slides');
+
     function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-      });
+      const totalSlides = slides.children.length;
+      currentSlide = (index + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
+
     function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-    setInterval(nextSlide, 5000);
-
-    // Read More Toggle
-    function toggleRead(el) {
-      const desc = el.nextElementSibling;
-      const expanded = desc.style.display === "block";
-      desc.style.display = expanded ? "none" : "block";
-      el.textContent = expanded ? "Read more" : "Read less";
+      showSlide(currentSlide + 1);
     }
 
-    // Search
-    document.getElementById('search-btn').addEventListener('click', () => {
-      const query = document.getElementById('site-search').value.toLowerCase();
-      document.querySelectorAll('.feature-item').forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(query) ? '' : 'none';
-      });
-    });
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
 
-    // Language Select
-    const langMap = {
-      en: { searchPlaceholder: "Search..." },
-      hi: { searchPlaceholder: "खोजें..." },
-      es: { searchPlaceholder: "Buscar..." }
-    };
-    document.getElementById('lang-select').addEventListener('change', e => {
-      const lang = e.target.value;
-      const config = langMap[lang] || langMap.en;
-      document.getElementById('site-search').placeholder = config.searchPlaceholder;
-    });
+    setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
   </script>
 </body>
 </html>
